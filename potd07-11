@@ -1,0 +1,25 @@
+class Solution
+{
+    //Function to return sum of upper and lower triangles of a matrix.
+    static ArrayList<Integer> sumTriangles(int matrix[][], int n)
+    {
+        // code here
+        ArrayList<Integer> list = new ArrayList<>();
+        int d=0;
+        int u=0;
+        int l=0;
+        
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                if(i<=j)
+                    u += matrix[i][j];
+                if(i>=j)
+                    l += matrix[i][j];
+            }
+        }
+        list.add(u);
+        list.add(l);
+        
+        return list;
+    }
+}
