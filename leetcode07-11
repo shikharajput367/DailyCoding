@@ -1,0 +1,29 @@
+class Solution {
+    public int eliminateMaximum(int[] dist, int[] speed) {
+        int count = 0;
+        int n = dist.length;
+
+        // Convert distances into time required to reach the city
+        for (int i = 0; i < n; i++) {
+            if (dist[i] % speed[i] != 0) {
+                dist[i] = (dist[i] / speed[i]) + 1;
+            } else {
+                dist[i] /= speed[i];
+            }
+        }
+
+        // Sort time required to eliminate monsters that reach first
+        Arrays.sort(dist);
+
+        for (int i = 0; i < n; i++) {
+            dist[i] -= i; // Minutes away from the city at the ith minute
+            if (dist[i] <= 0) { // Monster already at the city
+                break;
+            }
+            count++; // Eliminate the monster
+        }
+
+        return count;
+        
+    }
+}
